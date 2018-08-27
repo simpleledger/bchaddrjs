@@ -1,6 +1,6 @@
 {
   "name": "bchaddrjs-slp",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Bitcoin Cash general purpose address translation.",
   "main": "src/bchaddr.js",
   "scripts": {
@@ -57,6 +57,6 @@
   },
   "dependencies": {
     "bs58check": "^2.1.2",
-    "cashaddrjs-slp": "^0.2.9"
+    "cashaddrjs-slp": "^0.2.11"
   }
 }
