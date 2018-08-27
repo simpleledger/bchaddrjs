@@ -7,7 +7,7 @@
  */
 
 var bs58check = require('bs58check')
-var cashaddr = require('cashaddrjs')
+var cashaddr = require('cashaddrjs-slp')
 
 /**
  * General purpose Bitcoin Cash address detection and translation.<br />
@@ -29,6 +29,7 @@ var Format = {}
 Format.Legacy = 'legacy'
 Format.Bitpay = 'bitpay'
 Format.Cashaddr = 'cashaddr'
+Format.Slpaddr = 'slpaddr'
 
 /**
  * @static
@@ -122,6 +123,18 @@ function toCashAddress (address) {
 }
 
 /**
+ * Translates the given address into cashaddr format.
+ * @static
+ * @param {string} address - A valid SLP address in any format.
+ * @return {string}
+ * @throws {InvalidAddressError}
+ */
+function toSlpAddress (address) {
+  var decoded = decodeAddress(address)
+  return encodeAsSlpaddr(decoded)
+}
+
+/**
  * Version byte table for base58 formats.
  * @private
  */
@@ -155,6 +168,10 @@ function decodeAddress (address) {
   }
   try {
     return decodeCashAddress(address)
+  } catch (error) {
+  }
+  try {
+    return decodeSlpAddress(address)
   } catch (error) {
   }
   throw new InvalidAddressError()
@@ -292,6 +309,65 @@ function decodeCashAddressWithPrefix (address) {
 }
 
 /**
+ * Attempts to decode the given address assuming it is a slpaddr address.
+ * @private
+ * @param {string} address - A valid SLP address in any format.
+ * @return {object}
+ * @throws {InvalidAddressError}
+ */
+function decodeSlpAddress (address) {
+  if (address.indexOf(':') !== -1) {
+    try {
+      return decodeSlpAddressWithPrefix(address)
+    } catch (error) {
+    }
+  } else {
+    var prefixes = ['simpleledger', 'slptest']
+    for (var i = 0; i < prefixes.length; ++i) {
+      try {
+        var prefix = prefixes[i]
+        return decodeSlpAddressWithPrefix(prefix + ':' + address)
+      } catch (error) {
+      }
+    }
+  }
+  throw new InvalidAddressError()
+}
+
+/**
+ * Attempts to decode the given address assuming it is a slpaddr address with explicit prefix.
+ * @private
+ * @param {string} address - A valid SLP address in any format.
+ * @return {object}
+ * @throws {InvalidAddressError}
+ */
+function decodeSlpAddressWithPrefix (address) {
+  try {
+    var decoded = cashaddr.decode(address)
+    var hash = Array.prototype.slice.call(decoded.hash, 0)
+    var type = decoded.type === 'P2PKH' ? Type.P2PKH : Type.P2SH
+    switch (decoded.prefix) {
+      case 'simpleledger':
+        return {
+          hash: hash,
+          format: Format.Slpaddr,
+          network: Network.Mainnet,
+          type: type
+        }
+      case 'slptest':
+        return {
+          hash: hash,
+          format: Format.Slpaddr,
+          network: Network.Testnet,
+          type: type
+        }
+    }
+  } catch (error) {
+  }
+  throw new InvalidAddressError()
+}
+
+/**
  * Encodes the given decoded address into legacy format.
  * @private
  * @param {object} decoded
@@ -333,6 +409,19 @@ function encodeAsCashaddr (decoded) {
 }
 
 /**
+ * Encodes the given decoded address into slpaddr format.
+ * @private
+ * @param {object} decoded
+ * @returns {string}
+ */
+function encodeAsSlpaddr (decoded) {
+  var prefix = decoded.network === Network.Mainnet ? 'simpleledger' : 'slptest'
+  var type = decoded.type === Type.P2PKH ? 'P2PKH' : 'P2SH'
+  var hash = Uint8Array.from(decoded.hash)
+  return cashaddr.encode(prefix, type, hash)
+}
+
+/**
  * Returns a boolean indicating whether the address is in legacy format.
  * @static
  * @param {string} address - A valid Bitcoin Cash address in any format.
@@ -363,6 +452,17 @@ function isBitpayAddress (address) {
  */
 function isCashAddress (address) {
   return detectAddressFormat(address) === Format.Cashaddr
+}
+
+/**
+ * Returns a boolean indicating whether the address is in cashaddr format.
+ * @static
+ * @param {string} address - A valid Bitcoin Cash address in any format.
+ * @returns {boolean}
+ * @throws {InvalidAddressError}
+ */
+function isSlpAddress (address) {
+  return detectAddressFormat(address) === Format.Slpaddr
 }
 
 /**
@@ -433,9 +533,11 @@ module.exports = {
   toLegacyAddress: toLegacyAddress,
   toBitpayAddress: toBitpayAddress,
   toCashAddress: toCashAddress,
+  toSlpAddress: toSlpAddress,
   isLegacyAddress: isLegacyAddress,
   isBitpayAddress: isBitpayAddress,
   isCashAddress: isCashAddress,
+  isSlpAddress: isSlpAddress,
   isMainnetAddress: isMainnetAddress,
   isTestnetAddress: isTestnetAddress,
   isP2PKHAddress: isP2PKHAddress,
