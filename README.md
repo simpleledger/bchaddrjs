@@ -1,9 +1,6 @@
 # BchAddr.js: Bitcoin Cash general purpose address translation for Node.js and web browsers.
 
-[![Build Status](https://travis-ci.org/bitcoincashjs/bchaddrjs.svg?branch=master)](https://travis-ci.org/bitcoincashjs/bchaddrjs) [![Coverage Status](https://coveralls.io/repos/github/bitcoincashjs/bchaddrjs/badge.svg?branch=master)](https://coveralls.io/github/bitcoincashjs/bchaddrjs?branch=master)
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-
-[![NPM](https://nodei.co/npm/bchaddrjs.png?downloads=true)](https://nodei.co/npm/bchaddrjs/)
+[![NPM](https://nodei.co/npm/bchaddrjs-slp.png?downloads=true)](https://nodei.co/npm/bchaddrjs-slp/)
 
 [![JavaScript Style Guide](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
 
@@ -18,25 +15,21 @@ Test out a demo address translator powered by BchAddr.js [here](https://bitcoinc
 ### Using NPM
 
 ```bsh
-$ npm install --save bchaddrjs
+$ npm install --save bchaddrjs-slp
 ```
 
 ### Using Bower
 
 ```bsh
-$ bower install --save bchaddrjs
+$ bower install --save bchaddrjs-slp
 ```
-
-### Manually
-
-You may also download the distribution file manually and place it within your third-party scripts directory: [dist/bchaddrjs-0.2.2.min.js](https://cdn.rawgit.com/bitcoincashjs/bchaddrjs/master/dist/bchaddrjs-0.2.2.min.js).
 
 ## Usage
 
 ### In Node.js
 
 ```javascript
-var bchaddr = require('bchaddrjs');
+var bchaddr = require('bchaddrjs-slp');
 ```
 
 ### Browser
@@ -49,7 +42,7 @@ You may include a script tag in your HTML and the `bchaddr` module will be defin
 <html>
   <head>
     ...
-    <script src="https://cdn.rawgit.com/bitcoincashjs/bchaddrjs/master/dist/bchaddrjs-0.2.2.min.js"></script>
+    <script src="https://cdn.rawgit.com/simpleledger/bchaddrjs/master/dist/bchaddrjs-slp-0.2.7.min.js"></script>
   </head>
   ...
 </html>
@@ -145,4 +138,4 @@ $ npm run docs
 
 ### Online
 
-Browse automatically generated jsdocs [online](https://cdn.rawgit.com/bitcoincashjs/bchaddrjs/master/jsdoc/index.html).
+Browse automatically generated jsdocs [online](https://cdn.rawgit.com/simpleledger/bchaddrjs/master/jsdoc/index.html).
