@@ -262,7 +262,7 @@ function decodeCashAddress (address) {
     } catch (error) {
     }
   } else {
-    var prefixes = ['bitcoincash', 'bchtest', 'regtest']
+    var prefixes = ['bitcoincash', 'bchtest', 'regtest', 'bchreg']
     for (var i = 0; i < prefixes.length; ++i) {
       try {
         var prefix = prefixes[i]
@@ -296,6 +296,7 @@ function decodeCashAddressWithPrefix (address) {
         }
       case 'bchtest':
       case 'regtest':
+      case 'bchreg':
         return {
           hash: hash,
           format: Format.Cashaddr,
@@ -322,7 +323,7 @@ function decodeSlpAddress (address) {
     } catch (error) {
     }
   } else {
-    var prefixes = ['simpleledger', 'slptest']
+    var prefixes = ['simpleledger', 'slptest', 'slpreg']
     for (var i = 0; i < prefixes.length; ++i) {
       try {
         var prefix = prefixes[i]
@@ -355,6 +356,7 @@ function decodeSlpAddressWithPrefix (address) {
           type: type
         }
       case 'slptest':
+      case 'slpreg':
         return {
           hash: hash,
           format: Format.Slpaddr,
