@@ -125,13 +125,37 @@ function toCashAddress (address) {
 /**
  * Translates the given address into cashaddr format.
  * @static
- * @param {string} address - A valid SLP address in any format.
+ * @param {string} address - A valid address in any format.
  * @return {string}
  * @throws {InvalidAddressError}
  */
 function toSlpAddress (address) {
   var decoded = decodeAddress(address)
   return encodeAsSlpaddr(decoded)
+}
+
+/**
+ * Translates the given address into regtest format.
+ * @static
+ * @param {string} address - A valid address in any format.
+ * @return {string}
+ * @throws {InvalidAddressError}
+ */
+function toRegtestAddress (address) {
+  var decoded = decodeAddress(address)
+  return encodeAsRegtestaddr(decoded)
+}
+
+/**
+ * Translates the given address into regtest format.
+ * @static
+ * @param {string} address - A valid address in any format.
+ * @return {string}
+ * @throws {InvalidAddressError}
+ */
+function toSlpRegtestAddress (address) {
+  var decoded = decodeAddress(address)
+  return encodeAsSlpRegtestaddr(decoded)
 }
 
 /**
@@ -424,6 +448,32 @@ function encodeAsSlpaddr (decoded) {
 }
 
 /**
+ * Encodes the given decoded address into regtest format.
+ * @private
+ * @param {object} decoded
+ * @returns {string}
+ */
+function encodeAsRegtestaddr (decoded) {
+  var prefix = 'bchreg'
+  var type = decoded.type === Type.P2PKH ? 'P2PKH' : 'P2SH'
+  var hash = Uint8Array.from(decoded.hash)
+  return cashaddr.encode(prefix, type, hash)
+}
+
+/**
+ * Encodes the given decoded address into regtest format.
+ * @private
+ * @param {object} decoded
+ * @returns {string}
+ */
+function encodeAsSlpRegtestaddr (decoded) {
+  var prefix = 'slpreg'
+  var type = decoded.type === Type.P2PKH ? 'P2PKH' : 'P2SH'
+  var hash = Uint8Array.from(decoded.hash)
+  return cashaddr.encode(prefix, type, hash)
+}
+
+/**
  * Returns a boolean indicating whether the address is in legacy format.
  * @static
  * @param {string} address - A valid Bitcoin Cash address in any format.
@@ -539,6 +589,10 @@ module.exports = {
   toCashAddress: toCashAddress,
   encodeAsSlpaddr: encodeAsSlpaddr,
   toSlpAddress: toSlpAddress,
+  encodeAsRegtestaddr: encodeAsRegtestaddr,
+  toRegtestAddress: toRegtestAddress,
+  encodeAsSlpRegtestaddr: encodeAsSlpRegtestaddr,
+  toSlpRegtestAddress: toSlpRegtestAddress,
   encodeAsLegacy: encodeAsLegacy,
   isLegacyAddress: isLegacyAddress,
   encodeAsBitpay: encodeAsBitpay,
