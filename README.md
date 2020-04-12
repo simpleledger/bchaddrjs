@@ -42,7 +42,7 @@ You may include a script tag in your HTML and the `bchaddr` module will be defin
 <html>
   <head>
     ...
-    <script src="https://cdn.rawgit.com/simpleledger/bchaddrjs/master/dist/bchaddrjs-slp-0.2.7.min.js"></script>
+    <script src="https://unpkg.com/bchaddrjs-slp@0.2.8/dist/bchaddrjs-slp-0.2.8.min.js"  integrity="sha384-hZrNJXgibEWJ1QD6fzDANAA1wyWItWPBdCLXcnnPHOorct3yz6tU1vJqO+L3lo+I" crossorigin="anonymous"></script>
   </head>
   ...
 </html>
