@@ -48,6 +48,21 @@ Type.P2PKH = 'p2pkh'
 Type.P2SH = 'p2sh'
 
 /**
+ * Returns a boolean indicating whether the given input is a valid Bitcoin Cash address.
+ * @static
+ * @param {*} input - Any input to check for validity.
+ * @returns {boolean}
+ */
+function isValidAddress (input) {
+  try {
+    decodeAddress(input)
+    return true
+  } catch (error) {
+    return false
+  }
+}
+
+/**
  * Detects what is the given address' format.
  * @static
  * @param {string} address - A valid Bitcoin Cash address in any format.
@@ -579,6 +594,7 @@ module.exports = {
   Format: Format,
   Network: Network,
   Type: Type,
+  isValidAddress: isValidAddress,
   detectAddressFormat: detectAddressFormat,
   detectAddressNetwork: detectAddressNetwork,
   detectAddressType: detectAddressType,
