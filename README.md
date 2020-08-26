@@ -42,7 +42,7 @@ You may include a script tag in your HTML and the `bchaddr` module will be defin
 <html>
   <head>
     ...
-    <script src="https://unpkg.com/bchaddrjs-slp@0.2.8/dist/bchaddrjs-slp-0.2.8.min.js"  integrity="sha384-hZrNJXgibEWJ1QD6fzDANAA1wyWItWPBdCLXcnnPHOorct3yz6tU1vJqO+L3lo+I" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bchaddrjs-slp@0.2.9/dist/bchaddrjs-slp-0.2.9.min.js"  integrity="sha384-hZrNJXgibEWJ1QD6fzDANAA1wyWItWPBdCLXcnnPHOorct3yz6tU1vJqO+L3lo+I" crossorigin="anonymous"></script>
   </head>
   ...
 </html>
