@@ -38,6 +38,7 @@ Format.Slpaddr = 'slpaddr'
 var Network = {}
 Network.Mainnet = 'mainnet'
 Network.Testnet = 'testnet'
+Network.Regtest = 'regtest'
 
 /**
  * @static
@@ -185,6 +186,9 @@ VERSION_BYTE[Format.Legacy][Network.Mainnet][Type.P2SH] = 5
 VERSION_BYTE[Format.Legacy][Network.Testnet] = {}
 VERSION_BYTE[Format.Legacy][Network.Testnet][Type.P2PKH] = 111
 VERSION_BYTE[Format.Legacy][Network.Testnet][Type.P2SH] = 196
+VERSION_BYTE[Format.Legacy][Network.Regtest] = {}
+VERSION_BYTE[Format.Legacy][Network.Regtest][Type.P2PKH] = 111
+VERSION_BYTE[Format.Legacy][Network.Regtest][Type.P2SH] = 196
 VERSION_BYTE[Format.Bitpay] = {}
 VERSION_BYTE[Format.Bitpay][Network.Mainnet] = {}
 VERSION_BYTE[Format.Bitpay][Network.Mainnet][Type.P2PKH] = 28
@@ -267,6 +271,20 @@ function decodeBase58Address (address) {
           network: Network.Testnet,
           type: Type.P2SH
         }
+      case VERSION_BYTE[Format.Legacy][Network.Regtest][Type.P2PKH]:
+        return {
+          hash: hash,
+          format: Format.Legacy,
+          network: Network.Regtest,
+          type: Type.P2PKH
+        }
+      case VERSION_BYTE[Format.Legacy][Network.Regtest][Type.P2SH]:
+        return {
+          hash: hash,
+          format: Format.Legacy,
+          network: Network.Regtest,
+          type: Type.P2SH
+        }
       case VERSION_BYTE[Format.Bitpay][Network.Mainnet][Type.P2PKH]:
         return {
           hash: hash,
@@ -334,12 +352,18 @@ function decodeCashAddressWithPrefix (address) {
           type: type
         }
       case 'bchtest':
+        return {
+          hash: hash,
+          format: Format.Cashaddr,
+          network: Network.Testnet,
+          type: type
+        }
       case 'regtest':
       case 'bchreg':
         return {
           hash: hash,
           format: Format.Cashaddr,
-          network: Network.Testnet,
+          network: Network.Regtest,
           type: type
         }
     }
@@ -395,11 +419,17 @@ function decodeSlpAddressWithPrefix (address) {
           type: type
         }
       case 'slptest':
-      case 'slpreg':
         return {
           hash: hash,
           format: Format.Slpaddr,
           network: Network.Testnet,
+          type: type
+        }
+      case 'slpreg':
+        return {
+          hash: hash,
+          format: Format.Slpaddr,
+          network: Network.Regtest,
           type: type
         }
     }
@@ -442,8 +472,18 @@ function encodeAsBitpay (decoded) {
  * @param {object} decoded
  * @returns {string}
  */
+function network2BchPrefix (network) {
+  switch (network) {
+    case Network.Testnet:
+      return 'bchtest'
+    case Network.Regtest:
+      return 'bchreg'
+    default:
+      return 'bitcoincash'
+  }
+}
 function encodeAsCashaddr (decoded) {
-  var prefix = decoded.network === Network.Mainnet ? 'bitcoincash' : 'bchtest'
+  var prefix = network2BchPrefix(decoded.network)
   var type = decoded.type === Type.P2PKH ? 'P2PKH' : 'P2SH'
   var hash = Uint8Array.from(decoded.hash)
   return cashaddr.encode(prefix, type, hash)
@@ -455,8 +495,18 @@ function encodeAsCashaddr (decoded) {
  * @param {object} decoded
  * @returns {string}
  */
+function network2slpPrefix (network) {
+  switch (network) {
+    case Network.Testnet:
+      return 'slptest'
+    case Network.Regtest:
+      return 'slpreg'
+    default:
+      return 'simpleledger'
+  }
+}
 function encodeAsSlpaddr (decoded) {
-  var prefix = decoded.network === Network.Mainnet ? 'simpleledger' : 'slptest'
+  var prefix = network2slpPrefix(decoded.network)
   var type = decoded.type === Type.P2PKH ? 'P2PKH' : 'P2SH'
   var hash = Uint8Array.from(decoded.hash)
   return cashaddr.encode(prefix, type, hash)
@@ -555,6 +605,17 @@ function isTestnetAddress (address) {
 }
 
 /**
+ * Returns a boolean indicating whether the address is a Regtest address.
+ * @static
+ * @param {string} address - A valid Bitcoin Cash address in any format.
+ * @returns {boolean}
+ * @throws {InvalidAddressError}
+ */
+function isRegTestAddress (address) {
+  return detectAddressNetwork(address) === Network.Regtest
+}
+
+/**
  * Returns a boolean indicating whether the address is a p2pkh address.
  * @static
  * @param {string} address - A valid Bitcoin Cash address in any format.
@@ -617,6 +678,7 @@ module.exports = {
   isSlpAddress: isSlpAddress,
   isMainnetAddress: isMainnetAddress,
   isTestnetAddress: isTestnetAddress,
+  isRegTestAddress: isRegTestAddress,
   isP2PKHAddress: isP2PKHAddress,
   isP2SHAddress: isP2SHAddress,
   InvalidAddressError: InvalidAddressError
