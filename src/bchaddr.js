@@ -133,8 +133,9 @@ function toBitpayAddress (address) {
  * @return {string}
  * @throws {InvalidAddressError}
  */
-function toCashAddress (address) {
-  var decoded = decodeAddress(address)
+function toCashAddress (address, regtest) {
+  regtest = typeof regtest === 'boolean' ? regtest : false
+  var decoded = decodeAddress(address, regtest)
   return encodeAsCashaddr(decoded)
 }
 
@@ -204,19 +205,17 @@ VERSION_BYTE[Format.Bitpay][Network.Testnet][Type.P2SH] = 196
  * @return {object}
  * @throws {InvalidAddressError}
  */
-function decodeAddress (address) {
+function decodeAddress (address, regtest) {
+  regtest = typeof regtest === 'boolean' ? regtest : false
   try {
-    return decodeBase58Address(address)
-  } catch (error) {
-  }
+    return decodeBase58Address(address, regtest)
+  } catch (error) {}
   try {
     return decodeCashAddress(address)
-  } catch (error) {
-  }
+  } catch (error) {}
   try {
     return decodeSlpAddress(address)
-  } catch (error) {
-  }
+  } catch (error) {}
   throw new InvalidAddressError()
 }
 
@@ -234,7 +233,8 @@ var BASE_58_CHECK_PAYLOAD_LENGTH = 21
  * @return {object}
  * @throws {InvalidAddressError}
  */
-function decodeBase58Address (address) {
+function decodeBase58Address (address, regtest) {
+  regtest = typeof regtest === 'boolean' ? regtest : false
   try {
     var payload = bs58check.decode(address)
     if (payload.length !== BASE_58_CHECK_PAYLOAD_LENGTH) {
@@ -242,66 +242,71 @@ function decodeBase58Address (address) {
     }
     var versionByte = payload[0]
     var hash = Array.prototype.slice.call(payload, 1)
-    switch (versionByte) {
-      case VERSION_BYTE[Format.Legacy][Network.Mainnet][Type.P2PKH]:
-        return {
-          hash: hash,
-          format: Format.Legacy,
-          network: Network.Mainnet,
-          type: Type.P2PKH
-        }
-      case VERSION_BYTE[Format.Legacy][Network.Mainnet][Type.P2SH]:
-        return {
-          hash: hash,
-          format: Format.Legacy,
-          network: Network.Mainnet,
-          type: Type.P2SH
-        }
-      case VERSION_BYTE[Format.Legacy][Network.Testnet][Type.P2PKH]:
-        return {
-          hash: hash,
-          format: Format.Legacy,
-          network: Network.Testnet,
-          type: Type.P2PKH
-        }
-      case VERSION_BYTE[Format.Legacy][Network.Testnet][Type.P2SH]:
-        return {
-          hash: hash,
-          format: Format.Legacy,
-          network: Network.Testnet,
-          type: Type.P2SH
-        }
-      case VERSION_BYTE[Format.Legacy][Network.Regtest][Type.P2PKH]:
-        return {
-          hash: hash,
-          format: Format.Legacy,
-          network: Network.Regtest,
-          type: Type.P2PKH
-        }
-      case VERSION_BYTE[Format.Legacy][Network.Regtest][Type.P2SH]:
-        return {
-          hash: hash,
-          format: Format.Legacy,
-          network: Network.Regtest,
-          type: Type.P2SH
-        }
-      case VERSION_BYTE[Format.Bitpay][Network.Mainnet][Type.P2PKH]:
-        return {
-          hash: hash,
-          format: Format.Bitpay,
-          network: Network.Mainnet,
-          type: Type.P2PKH
-        }
-      case VERSION_BYTE[Format.Bitpay][Network.Mainnet][Type.P2SH]:
-        return {
-          hash: hash,
-          format: Format.Bitpay,
-          network: Network.Mainnet,
-          type: Type.P2SH
-        }
+    if (regtest === false) {
+      switch (versionByte) {
+        case VERSION_BYTE[Format.Legacy][Network.Mainnet][Type.P2PKH]:
+          return {
+            hash: hash,
+            format: Format.Legacy,
+            network: Network.Mainnet,
+            type: Type.P2PKH
+          }
+        case VERSION_BYTE[Format.Legacy][Network.Mainnet][Type.P2SH]:
+          return {
+            hash: hash,
+            format: Format.Legacy,
+            network: Network.Mainnet,
+            type: Type.P2SH
+          }
+        case VERSION_BYTE[Format.Legacy][Network.Testnet][Type.P2PKH]:
+          return {
+            hash: hash,
+            format: Format.Legacy,
+            network: Network.Testnet,
+            type: Type.P2PKH
+          }
+        case VERSION_BYTE[Format.Legacy][Network.Testnet][Type.P2SH]:
+          return {
+            hash: hash,
+            format: Format.Legacy,
+            network: Network.Testnet,
+            type: Type.P2SH
+          }
+        case VERSION_BYTE[Format.Bitpay][Network.Mainnet][Type.P2PKH]:
+          return {
+            hash: hash,
+            format: Format.Bitpay,
+            network: Network.Mainnet,
+            type: Type.P2PKH
+          }
+        case VERSION_BYTE[Format.Bitpay][Network.Mainnet][Type.P2SH]:
+          return {
+            hash: hash,
+            format: Format.Bitpay,
+            network: Network.Mainnet,
+            type: Type.P2SH
+          }
+      }
+    } else {
+      switch (versionByte) {
+        case VERSION_BYTE[Format.Legacy][Network.Regtest][Type.P2PKH]:
+          return {
+            hash: hash,
+            format: Format.Legacy,
+            network: Network.Regtest,
+            type: Type.P2PKH
+          }
+        case VERSION_BYTE[Format.Legacy][Network.Regtest][Type.P2SH]:
+          return {
+            hash: hash,
+            format: Format.Legacy,
+            network: Network.Regtest,
+            type: Type.P2SH
+          }
+      }
     }
-  } catch (error) {
-  }
+  } catch (error) { }
+
   throw new InvalidAddressError()
 }
 
@@ -316,16 +321,14 @@ function decodeCashAddress (address) {
   if (address.indexOf(':') !== -1) {
     try {
       return decodeCashAddressWithPrefix(address)
-    } catch (error) {
-    }
+    } catch (error) {}
   } else {
     var prefixes = ['bitcoincash', 'bchtest', 'regtest', 'bchreg']
     for (var i = 0; i < prefixes.length; ++i) {
       try {
         var prefix = prefixes[i]
         return decodeCashAddressWithPrefix(prefix + ':' + address)
-      } catch (error) {
-      }
+      } catch (error) {}
     }
   }
   throw new InvalidAddressError()
@@ -367,8 +370,7 @@ function decodeCashAddressWithPrefix (address) {
           type: type
         }
     }
-  } catch (error) {
-  }
+  } catch (error) {}
   throw new InvalidAddressError()
 }
 
@@ -383,16 +385,14 @@ function decodeSlpAddress (address) {
   if (address.indexOf(':') !== -1) {
     try {
       return decodeSlpAddressWithPrefix(address)
-    } catch (error) {
-    }
+    } catch (error) {}
   } else {
     var prefixes = ['simpleledger', 'slptest', 'slpreg']
     for (var i = 0; i < prefixes.length; ++i) {
       try {
         var prefix = prefixes[i]
         return decodeSlpAddressWithPrefix(prefix + ':' + address)
-      } catch (error) {
-      }
+      } catch (error) {}
     }
   }
   throw new InvalidAddressError()
@@ -433,8 +433,7 @@ function decodeSlpAddressWithPrefix (address) {
           type: type
         }
     }
-  } catch (error) {
-  }
+  } catch (error) {}
   throw new InvalidAddressError()
 }
 
@@ -482,6 +481,7 @@ function network2BchPrefix (network) {
       return 'bitcoincash'
   }
 }
+
 function encodeAsCashaddr (decoded) {
   var prefix = network2BchPrefix(decoded.network)
   var type = decoded.type === Type.P2PKH ? 'P2PKH' : 'P2SH'
@@ -505,6 +505,7 @@ function network2slpPrefix (network) {
       return 'simpleledger'
   }
 }
+
 function encodeAsSlpaddr (decoded) {
   var prefix = network2slpPrefix(decoded.network)
   var type = decoded.type === Type.P2PKH ? 'P2PKH' : 'P2SH'
