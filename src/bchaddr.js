@@ -70,8 +70,9 @@ function isValidAddress (input) {
  * @return {string}
  * @throws {InvalidAddressError}
  */
-function detectAddressFormat (address) {
-  return decodeAddress(address).format
+function detectAddressFormat (address, regtest) {
+  regtest = typeof regtest === 'boolean' ? regtest : false
+  return decodeAddress(address, regtest).format
 }
 
 /**
@@ -81,8 +82,9 @@ function detectAddressFormat (address) {
  * @return {string}
  * @throws {InvalidAddressError}
  */
-function detectAddressNetwork (address) {
-  return decodeAddress(address).network
+function detectAddressNetwork (address, regtest) {
+  regtest = typeof regtest === 'boolean' ? regtest : false
+  return decodeAddress(address, regtest).network
 }
 
 /**
@@ -92,8 +94,9 @@ function detectAddressNetwork (address) {
  * @return {string}
  * @throws {InvalidAddressError}
  */
-function detectAddressType (address) {
-  return decodeAddress(address).type
+function detectAddressType (address, regtest) {
+  regtest = typeof regtest === 'boolean' ? regtest : false
+  return decodeAddress(address, regtest).type
 }
 
 /**
@@ -103,8 +106,9 @@ function detectAddressType (address) {
  * @return {string}
  * @throws {InvalidAddressError}
  */
-function toLegacyAddress (address) {
-  var decoded = decodeAddress(address)
+function toLegacyAddress (address, regtest) {
+  regtest = typeof regtest === 'boolean' ? regtest : false
+  var decoded = decodeAddress(address, regtest)
   if (decoded.format === Format.Legacy) {
     return address
   }
@@ -146,33 +150,10 @@ function toCashAddress (address, regtest) {
  * @return {string}
  * @throws {InvalidAddressError}
  */
-function toSlpAddress (address) {
-  var decoded = decodeAddress(address)
+function toSlpAddress (address, regtest) {
+  regtest = typeof regtest === 'boolean' ? regtest : false
+  var decoded = decodeAddress(address, regtest)
   return encodeAsSlpaddr(decoded)
-}
-
-/**
- * Translates the given address into regtest format.
- * @static
- * @param {string} address - A valid address in any format.
- * @return {string}
- * @throws {InvalidAddressError}
- */
-function toRegtestAddress (address) {
-  var decoded = decodeAddress(address)
-  return encodeAsRegtestaddr(decoded)
-}
-
-/**
- * Translates the given address into regtest format.
- * @static
- * @param {string} address - A valid address in any format.
- * @return {string}
- * @throws {InvalidAddressError}
- */
-function toSlpRegtestAddress (address) {
-  var decoded = decodeAddress(address)
-  return encodeAsSlpRegtestaddr(decoded)
 }
 
 /**
@@ -211,10 +192,10 @@ function decodeAddress (address, regtest) {
     return decodeBase58Address(address, regtest)
   } catch (error) {}
   try {
-    return decodeCashAddress(address)
+    return decodeCashAddress(address, regtest)
   } catch (error) {}
   try {
-    return decodeSlpAddress(address)
+    return decodeSlpAddress(address, regtest)
   } catch (error) {}
   throw new InvalidAddressError()
 }
@@ -317,17 +298,18 @@ function decodeBase58Address (address, regtest) {
  * @return {object}
  * @throws {InvalidAddressError}
  */
-function decodeCashAddress (address) {
+function decodeCashAddress (address, regtest) {
+  regtest = typeof regtest === 'boolean' ? regtest : false
   if (address.indexOf(':') !== -1) {
     try {
-      return decodeCashAddressWithPrefix(address)
+      return decodeCashAddressWithPrefix(address, regtest)
     } catch (error) {}
   } else {
     var prefixes = ['bitcoincash', 'bchtest', 'regtest', 'bchreg']
     for (var i = 0; i < prefixes.length; ++i) {
       try {
         var prefix = prefixes[i]
-        return decodeCashAddressWithPrefix(prefix + ':' + address)
+        return decodeCashAddressWithPrefix(prefix + ':' + address, regtest)
       } catch (error) {}
     }
   }
@@ -341,34 +323,39 @@ function decodeCashAddress (address) {
  * @return {object}
  * @throws {InvalidAddressError}
  */
-function decodeCashAddressWithPrefix (address) {
+function decodeCashAddressWithPrefix (address, regtest) {
+  regtest = typeof regtest === 'boolean' ? regtest : false
   try {
     var decoded = cashaddr.decode(address)
     var hash = Array.prototype.slice.call(decoded.hash, 0)
     var type = decoded.type === 'P2PKH' ? Type.P2PKH : Type.P2SH
-    switch (decoded.prefix) {
-      case 'bitcoincash':
-        return {
-          hash: hash,
-          format: Format.Cashaddr,
-          network: Network.Mainnet,
-          type: type
-        }
-      case 'bchtest':
-        return {
-          hash: hash,
-          format: Format.Cashaddr,
-          network: Network.Testnet,
-          type: type
-        }
-      case 'regtest':
-      case 'bchreg':
-        return {
-          hash: hash,
-          format: Format.Cashaddr,
-          network: Network.Regtest,
-          type: type
-        }
+    if (regtest === false) {
+      switch (decoded.prefix) {
+        case 'bitcoincash':
+          return {
+            hash: hash,
+            format: Format.Cashaddr,
+            network: Network.Mainnet,
+            type: type
+          }
+        case 'bchtest':
+          return {
+            hash: hash,
+            format: Format.Cashaddr,
+            network: Network.Testnet,
+            type: type
+          }
+      }
+    } else {
+      switch (decoded.prefix) {
+        case 'bchreg':
+          return {
+            hash: hash,
+            format: Format.Cashaddr,
+            network: Network.Regtest,
+            type: type
+          }
+      }
     }
   } catch (error) {}
   throw new InvalidAddressError()
@@ -381,17 +368,18 @@ function decodeCashAddressWithPrefix (address) {
  * @return {object}
  * @throws {InvalidAddressError}
  */
-function decodeSlpAddress (address) {
+function decodeSlpAddress (address, regtest) {
+  regtest = typeof regtest === 'boolean' ? regtest : false
   if (address.indexOf(':') !== -1) {
     try {
-      return decodeSlpAddressWithPrefix(address)
+      return decodeSlpAddressWithPrefix(address, regtest)
     } catch (error) {}
   } else {
     var prefixes = ['simpleledger', 'slptest', 'slpreg']
     for (var i = 0; i < prefixes.length; ++i) {
       try {
         var prefix = prefixes[i]
-        return decodeSlpAddressWithPrefix(prefix + ':' + address)
+        return decodeSlpAddressWithPrefix(prefix + ':' + address, regtest)
       } catch (error) {}
     }
   }
@@ -405,33 +393,39 @@ function decodeSlpAddress (address) {
  * @return {object}
  * @throws {InvalidAddressError}
  */
-function decodeSlpAddressWithPrefix (address) {
+function decodeSlpAddressWithPrefix (address, regtest) {
+  regtest = typeof regtest === 'boolean' ? regtest : false
   try {
     var decoded = cashaddr.decode(address)
     var hash = Array.prototype.slice.call(decoded.hash, 0)
     var type = decoded.type === 'P2PKH' ? Type.P2PKH : Type.P2SH
-    switch (decoded.prefix) {
-      case 'simpleledger':
-        return {
-          hash: hash,
-          format: Format.Slpaddr,
-          network: Network.Mainnet,
-          type: type
-        }
-      case 'slptest':
-        return {
-          hash: hash,
-          format: Format.Slpaddr,
-          network: Network.Testnet,
-          type: type
-        }
-      case 'slpreg':
-        return {
-          hash: hash,
-          format: Format.Slpaddr,
-          network: Network.Regtest,
-          type: type
-        }
+    if (regtest === false) {
+      switch (decoded.prefix) {
+        case 'simpleledger':
+          return {
+            hash: hash,
+            format: Format.Slpaddr,
+            network: Network.Mainnet,
+            type: type
+          }
+        case 'slptest':
+          return {
+            hash: hash,
+            format: Format.Slpaddr,
+            network: Network.Testnet,
+            type: type
+          }
+      }
+    } else {
+      switch (decoded.prefix) {
+        case 'slpreg':
+          return {
+            hash: hash,
+            format: Format.Slpaddr,
+            network: Network.Regtest,
+            type: type
+          }
+      }
     }
   } catch (error) {}
   throw new InvalidAddressError()
@@ -568,8 +562,9 @@ function isBitpayAddress (address) {
  * @returns {boolean}
  * @throws {InvalidAddressError}
  */
-function isCashAddress (address) {
-  return detectAddressFormat(address) === Format.Cashaddr
+function isCashAddress (address, regtest) {
+  regtest = typeof regtest === 'boolean' ? regtest : false
+  return detectAddressFormat(address, regtest) === Format.Cashaddr
 }
 
 /**
@@ -579,8 +574,9 @@ function isCashAddress (address) {
  * @returns {boolean}
  * @throws {InvalidAddressError}
  */
-function isSlpAddress (address) {
-  return detectAddressFormat(address) === Format.Slpaddr
+function isSlpAddress (address, regtest) {
+  regtest = typeof regtest === 'boolean' ? regtest : false
+  return detectAddressFormat(address, regtest) === Format.Slpaddr
 }
 
 /**
@@ -590,8 +586,9 @@ function isSlpAddress (address) {
  * @returns {boolean}
  * @throws {InvalidAddressError}
  */
-function isMainnetAddress (address) {
-  return detectAddressNetwork(address) === Network.Mainnet
+function isMainnetAddress (address, regtest) {
+  regtest = typeof regtest === 'boolean' ? regtest : false
+  return detectAddressNetwork(address, regtest) === Network.Mainnet
 }
 
 /**
@@ -601,8 +598,9 @@ function isMainnetAddress (address) {
  * @returns {boolean}
  * @throws {InvalidAddressError}
  */
-function isTestnetAddress (address) {
-  return detectAddressNetwork(address) === Network.Testnet
+function isTestnetAddress (address, regtest) {
+  regtest = typeof regtest === 'boolean' ? regtest : false
+  return detectAddressNetwork(address, regtest) === Network.Testnet
 }
 
 /**
@@ -612,8 +610,9 @@ function isTestnetAddress (address) {
  * @returns {boolean}
  * @throws {InvalidAddressError}
  */
-function isRegTestAddress (address) {
-  return detectAddressNetwork(address) === Network.Regtest
+function isRegTestAddress (address, regtest) {
+  regtest = typeof regtest === 'boolean' ? regtest : false
+  return detectAddressNetwork(address, regtest) === Network.Regtest
 }
 
 /**
@@ -623,8 +622,9 @@ function isRegTestAddress (address) {
  * @returns {boolean}
  * @throws {InvalidAddressError}
  */
-function isP2PKHAddress (address) {
-  return detectAddressType(address) === Type.P2PKH
+function isP2PKHAddress (address, regtest) {
+  regtest = typeof regtest === 'boolean' ? regtest : false
+  return detectAddressType(address, regtest) === Type.P2PKH
 }
 
 /**
@@ -634,8 +634,9 @@ function isP2PKHAddress (address) {
  * @returns {boolean}
  * @throws {InvalidAddressError}
  */
-function isP2SHAddress (address) {
-  return detectAddressType(address) === Type.P2SH
+function isP2SHAddress (address, regtest) {
+  regtest = typeof regtest === 'boolean' ? regtest : false
+  return detectAddressType(address, regtest) === Type.P2SH
 }
 
 /**
@@ -668,9 +669,7 @@ module.exports = {
   encodeAsSlpaddr: encodeAsSlpaddr,
   toSlpAddress: toSlpAddress,
   encodeAsRegtestaddr: encodeAsRegtestaddr,
-  toRegtestAddress: toRegtestAddress,
   encodeAsSlpRegtestaddr: encodeAsSlpRegtestaddr,
-  toSlpRegtestAddress: toSlpRegtestAddress,
   encodeAsLegacy: encodeAsLegacy,
   isLegacyAddress: isLegacyAddress,
   encodeAsBitpay: encodeAsBitpay,
