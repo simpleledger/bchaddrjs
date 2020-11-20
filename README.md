@@ -28,6 +28,10 @@ $ bower install --save bchaddrjs-slp
 
 ### In Node.js
 
+```typescript
+import * as bchaddr from "bchaddrjs-slp";
+```
+
 ```javascript
 var bchaddr = require('bchaddrjs-slp');
 ```
