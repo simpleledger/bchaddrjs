@@ -1,15 +1,16 @@
 {
-  "name": "bch-addr-slp",
-  "version": "0.2.0",
+  "name": "bchaddrjs-slp",
+  "version": "0.2.12",
   "description": "Bitcoin Cash and SLP general purpose address translation. With regtest support",
   "main": "src/bchaddr.js",
+  "types": "src/bchaddr.d.ts",
   "files": [
     "src/*",
     "dist/*"
   ],
   "scripts": {
     "build": "node scripts/build.js",
-    "lint": "standard --global describe --global it src/* test/* scripts/*",
+    "lint": "standard --global describe --global it src/*.js test/* scripts/*",
     "pretest": "npm run lint",
     "test": "nyc --reporter=html --reporter=text mocha",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
@@ -25,7 +26,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:ActorForth/bch-addr-slp.git"
+    "url": "git+ssh://git@github.com/simpleledger/bchaddrjs.git"
   },
   "keywords": [
     "bitcoin-cash",
@@ -40,12 +41,12 @@
     "cash-address",
     "regtest"
   ],
-  "author": "Napat Charuphant <napat_pat3@hotmail.com>",
+  "author": "Emilio Almansi <hi@ealmansi.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ActorForth/bch-addr-slp/issues"
+    "url": "https://github.com/simpleledger/bchaddrjs/issues"
   },
-  "homepage": "https://github.com/ActorForth/bch-addr-slp#readme",
+  "homepage": "https://github.com/simpleledger/bchaddrjs#readme",
   "devDependencies": {
     "browserify": "^15.2.0",
     "chai": "^4.1.2",
