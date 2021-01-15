@@ -1,6 +1,6 @@
 {
   "name": "bchaddrjs-slp",
-  "version": "0.2.11",
+  "version": "0.2.12",
   "description": "Bitcoin Cash and SLP general purpose address translation.",
   "main": "src/bchaddr.js",
   "types": "src/bchaddr.d.ts",
