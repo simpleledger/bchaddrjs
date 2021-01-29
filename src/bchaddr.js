@@ -38,6 +38,25 @@ Format.Slpaddr = 'slpaddr'
 var Network = {}
 Network.Mainnet = 'mainnet'
 Network.Testnet = 'testnet'
+Network.Regtest = 'regtest'
+
+/**
+ * @static
+ * Cashaddr prefixes.
+ */
+var PrefixCashaddr = {}
+PrefixCashaddr.mainnet = 'bitcoincash'
+PrefixCashaddr.testnet = 'bchtest'
+PrefixCashaddr.regtest = 'bchreg'
+
+/**
+ * @static
+ * Slpaddr prefixes.
+ */
+var PrefixSlpaddr = {}
+PrefixSlpaddr.mainnet = 'simpleledger'
+PrefixSlpaddr.testnet = 'slptest'
+PrefixSlpaddr.regtest = 'slpreg'
 
 /**
  * @static
@@ -358,12 +377,18 @@ function decodeCashAddressWithPrefix (address) {
           type: type
         }
       case 'bchtest':
+        return {
+          hash: hash,
+          format: Format.Cashaddr,
+          network: Network.Testnet,
+          type: type
+        }
       case 'regtest':
       case 'bchreg':
         return {
           hash: hash,
           format: Format.Cashaddr,
-          network: Network.Testnet,
+          network: Network.Regtest,
           type: type
         }
     }
@@ -419,11 +444,17 @@ function decodeSlpAddressWithPrefix (address) {
           type: type
         }
       case 'slptest':
-      case 'slpreg':
         return {
           hash: hash,
           format: Format.Slpaddr,
           network: Network.Testnet,
+          type: type
+        }
+      case 'slpreg':
+        return {
+          hash: hash,
+          format: Format.Slpaddr,
+          network: Network.Regtest,
           type: type
         }
     }
@@ -467,7 +498,7 @@ function encodeAsBitpay (decoded) {
  * @returns {string}
  */
 function encodeAsCashaddr (decoded) {
-  var prefix = decoded.network === Network.Mainnet ? 'bitcoincash' : 'bchtest'
+  var prefix = PrefixCashaddr[decoded.network]
   var type = decoded.type === Type.P2PKH ? 'P2PKH' : 'P2SH'
   var hash = Uint8Array.from(decoded.hash)
   return cashaddr.encode(prefix, type, hash)
@@ -480,7 +511,7 @@ function encodeAsCashaddr (decoded) {
  * @returns {string}
  */
 function encodeAsSlpaddr (decoded) {
-  var prefix = decoded.network === Network.Mainnet ? 'simpleledger' : 'slptest'
+  var prefix = PrefixSlpaddr[decoded.network]
   var type = decoded.type === Type.P2PKH ? 'P2PKH' : 'P2SH'
   var hash = Uint8Array.from(decoded.hash)
   return cashaddr.encode(prefix, type, hash)
