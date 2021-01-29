@@ -286,6 +286,52 @@ describe('bchaddr', function () {
     'bchtest:pzzjgw37vwls805c9fw6g9vqyupadst6wgg2232yf7'
   ]
 
+  var CASHADDR_REGTEST_P2PKH_ADDRESSES = [
+    'bchreg:qph5kuz78czq00e3t85ugpgd7xmer5kr7c28g5v92v',
+    'bchreg:qpxenfpcf975gxdjmq9pk3xm6hjmfj6re5y9gf3l5p',
+    'bchreg:qzfau6vrq980qntgp5e7l6cpfsf7jw88c5zskp4yzq',
+    'bchreg:qzcguejjfxld867ck4zudc9a6y8mf6ftgq7d5yglmd',
+    'bchreg:qqm2lpqdfjsg8kkhwk0a3e3gypyswkd69uaakryk64',
+    'bchreg:qrccfa4qm3xfcrta78v7du75jjaww0ylnsw6pq3qp2',
+    'bchreg:qqdcsl6c879esyxyacmz7g6vtzwjjwtznsj5xqmxhc',
+    'bchreg:qpr2ddwe8qnnh8h20mmn4zgrharmy0vuy56m69xvms',
+    'bchreg:qqymsmh0nhfhs9k5whhnjwfxyaumvtxm8g5vak5dp7',
+    'bchreg:qzwdmm83qjx7372wxgszaukan73ffn8ct5tzg334f9',
+    'bchreg:qzh3f9me5z5sn2w8euap2gyrp6kr7gf6my2495cq72',
+    'bchreg:qrneuckcx69clprn4nnr82tf8sycqrs3act93p6r7n',
+    'bchreg:qz742xef07g9w8q52mx0q6m9hp05hnzm65qqjtwuas',
+    'bchreg:qq5dzl0drx8v0layyyuh5aupvxfs80ydmsl68n5wr4',
+    'bchreg:qpxedxtug7kpwd6tgf5vx08gjamel7sldsxmaa8a2a',
+    'bchreg:qr4fs2m8tjmw54r2aqmadggzuagttkujgyauzjv67l',
+    'bchreg:qrmed4fxlhkgay9nxw7zn9muew5ktkyjnuznu29uxr',
+    'bchreg:qqv3cpvmu4h0vqa6aly0urec7kwtuhe49yu5tcywwk',
+    'bchreg:qr39scfteeu5l573lzerchh6wc4cqkxetuanmygjjl',
+    'bchreg:qzzjgw37vwls805c9fw6g9vqyupadst6wg9nplw539'
+  ]
+
+  var CASHADDR_REGTEST_P2SH_ADDRESSES = [
+    'bchreg:pph5kuz78czq00e3t85ugpgd7xmer5kr7caz4mtx33',
+    'bchreg:ppxenfpcf975gxdjmq9pk3xm6hjmfj6re5nq4xku0u',
+    'bchreg:pzfau6vrq980qntgp5e7l6cpfsf7jw88c544twj8ea',
+    'bchreg:pzcguejjfxld867ck4zudc9a6y8mf6ftgqfgft0uqs',
+    'bchreg:pqm2lpqdfjsg8kkhwk0a3e3gypyswkd69u2ctvr4pg',
+    'bchreg:prccfa4qm3xfcrta78v7du75jjaww0ylnselu0kr6h',
+    'bchreg:pqdcsl6c879esyxyacmz7g6vtzwjjwtzns93m0u9v9',
+    'bchreg:ppr2ddwe8qnnh8h20mmn4zgrharmy0vuy5d782p0qd',
+    'bchreg:pqymsmh0nhfhs9k5whhnjwfxyaumvtxm8grfqenw6r',
+    'bchreg:pzwdmm83qjx7372wxgszaukan73ffn8ct5u847kkjc',
+    'bchreg:pzh3f9me5z5sn2w8euap2gyrp6kr7gf6myascmlr9h',
+    'bchreg:prneuckcx69clprn4nnr82tf8sycqrs3acuqvwaq9w',
+    'bchreg:pz742xef07g9w8q52mx0q6m9hp05hnzm65h90yflxd',
+    'bchreg:pq5dzl0drx8v0layyyuh5aupvxfs80ydmsgl6undcg',
+    'bchreg:ppxedxtug7kpwd6tgf5vx08gjamel7slds37qjq73q',
+    'bchreg:pr4fs2m8tjmw54r2aqmadggzuagttkujgy2elate9z',
+    'bchreg:prmed4fxlhkgay9nxw7zn9muew5ktkyjnu4kp9zla7',
+    'bchreg:pqv3cpvmu4h0vqa6aly0urec7kwtuhe49yt3khrd4t',
+    'bchreg:pr39scfteeu5l573lzerchh6wc4cqkxetu2kxt03fz',
+    'bchreg:pzzjgw37vwls805c9fw6g9vqyupadst6wgjkusfh2c'
+  ]
+
   var SLPADDR_MAINNET_P2PKH_ADDRESSES = [
     'simpleledger:qph5kuz78czq00e3t85ugpgd7xmer5kr7ccj3fcpsg',
     'simpleledger:qpxenfpcf975gxdjmq9pk3xm6hjmfj6re5ks359mw9',
@@ -378,6 +424,52 @@ describe('bchaddr', function () {
     'slptest:pzzjgw37vwls805c9fw6g9vqyupadst6wgn7d2snmr'
   ]
 
+  // var SLPADDR_REGTEST_P2PKH_ADDRESSES = [
+  //   'slpreg:qph5kuz78czq00e3t85ugpgd7xmer5kr7ch8j98fn9',
+  //   'slpreg:qpxenfpcf975gxdjmq9pk3xm6hjmfj6re5e9jc6ndg',
+  //   'slpreg:qzfau6vrq980qntgp5e7l6cpfsf7jw88c5lsvs7gmf',
+  //   'slpreg:qzcguejjfxld867ck4zudc9a6y8mf6ftgqrdw4rnzy',
+  //   'slpreg:qqm2lpqdfjsg8kkhwk0a3e3gypyswkd69uqavj06ru',
+  //   'slpreg:qrccfa4qm3xfcrta78v7du75jjaww0ylnsn6m36vcr',
+  //   'slpreg:qqdcsl6c879esyxyacmz7g6vtzwjjwtzns05u3s2w3',
+  //   'slpreg:qpr2ddwe8qnnh8h20mmn4zgrharmy0vuy58mq5dqze',
+  //   'slpreg:qqymsmh0nhfhs9k5whhnjwfxyaumvtxm8gfv88lpch',
+  //   'slpreg:qzwdmm83qjx7372wxgszaukan73ffn8ct5kzjq6esv',
+  //   'slpreg:qzh3f9me5z5sn2w8euap2gyrp6kr7gf6myh4l9nv8r',
+  //   'slpreg:qrneuckcx69clprn4nnr82tf8sycqrs3ack9ts3086',
+  //   'slpreg:qz742xef07g9w8q52mx0q6m9hp05hnzm65aqg69sye',
+  //   'slpreg:qq5dzl0drx8v0layyyuh5aupvxfs80ydmsz6azlz6u',
+  //   'slpreg:qpxedxtug7kpwd6tgf5vx08gjamel7sldsmm8vv3n5',
+  //   'slpreg:qr4fs2m8tjmw54r2aqmadggzuagttkujgyqucr8k8k',
+  //   'slpreg:qrmed4fxlhkgay9nxw7zn9muew5ktkyjnulnxmwsl2',
+  //   'slpreg:qqv3cpvmu4h0vqa6aly0urec7kwtuhe49yp53f0zhl',
+  //   'slpreg:qr39scfteeu5l573lzerchh6wc4cqkxetuqnp4r7tk',
+  //   'slpreg:qzzjgw37vwls805c9fw6g9vqyupadst6wgcnmw9cgv'
+  // ]
+
+  // var SLPADDR_REGTEST_P2SH_ADDRESSES = [
+  //   'slpreg:pph5kuz78czq00e3t85ugpgd7xmer5kr7cqz02q2gc',
+  //   'slpreg:ppxenfpcf975gxdjmq9pk3xm6hjmfj6re5wq0hask4',
+  //   'slpreg:pzfau6vrq980qntgp5e7l6cpfsf7jw88c5g43letq5',
+  //   'slpreg:pzcguejjfxld867ck4zudc9a6y8mf6ftgq5gn6ysee',
+  //   'slpreg:pqm2lpqdfjsg8kkhwk0a3e3gypyswkd69uhc3agecp',
+  //   'slpreg:prccfa4qm3xfcrta78v7du75jjaww0ylnsylx7a0r7',
+  //   'slpreg:pqdcsl6c879esyxyacmz7g6vtzwjjwtznsc3p7hf4v',
+  //   'slpreg:ppr2ddwe8qnnh8h20mmn4zgrharmy0vuy5s7am2rey',
+  //   'slpreg:pqymsmh0nhfhs9k5whhnjwfxyaumvtxm8g7f6gczr2',
+  //   'slpreg:pzwdmm83qjx7372wxgszaukan73ffn8ct5p800a6t3',
+  //   'slpreg:pzh3f9me5z5sn2w8euap2gyrp6kr7gf6myqsz250u7',
+  //   'slpreg:prneuckcx69clprn4nnr82tf8sycqrs3acpqklkvu8',
+  //   'slpreg:pz742xef07g9w8q52mx0q6m9hp05hnzm652944znly',
+  //   'slpreg:pq5dzl0drx8v0layyyuh5aupvxfs80ydms4lqdcppp',
+  //   'slpreg:ppxedxtug7kpwd6tgf5vx08gjamel7sldsv76rtjgf',
+  //   'slpreg:pr4fs2m8tjmw54r2aqmadggzuagttkujgyhe9vq4ut',
+  //   'slpreg:prmed4fxlhkgay9nxw7zn9muew5ktkyjnugkm5fnyh',
+  //   'slpreg:pqv3cpvmu4h0vqa6aly0urec7kwtuhe49yk3vxgpvz',
+  //   'slpreg:pr39scfteeu5l573lzerchh6wc4cqkxetuhku6yast',
+  //   'slpreg:pzzjgw37vwls805c9fw6g9vqyupadst6wg0kxpzmn3'
+  // ]
+
   var LEGACY_ADDRESSES = flatten([
     LEGACY_MAINNET_P2PKH_ADDRESSES,
     LEGACY_MAINNET_P2SH_ADDRESSES,
@@ -436,6 +528,11 @@ describe('bchaddr', function () {
     BITPAY_TESTNET_P2SH_ADDRESSES,
     CASHADDR_TESTNET_P2PKH_ADDRESSES,
     CASHADDR_TESTNET_P2SH_ADDRESSES
+  ])
+
+  var REGTEST_ADDRESSES = flatten([
+    CASHADDR_REGTEST_P2PKH_ADDRESSES,
+    CASHADDR_REGTEST_P2SH_ADDRESSES
   ])
 
   var P2PKH_ADDRESSES = flatten([
@@ -509,6 +606,11 @@ describe('bchaddr', function () {
     it('it should detect a testnet address\' network correctly', function () {
       TESTNET_ADDRESSES.forEach(function (address) {
         assert.strictEqual(bchaddr.detectAddressNetwork(address), bchaddr.Network.Testnet)
+      })
+    })
+    it('it should detect a regtest address\' network correctly', function () {
+      REGTEST_ADDRESSES.forEach(function (address) {
+        assert.strictEqual(bchaddr.detectAddressNetwork(address), bchaddr.Network.Regtest)
       })
     })
   })
@@ -981,6 +1083,31 @@ describe('bchaddr', function () {
         CASHADDR_ADDRESSES_NO_PREFIX.map(bchaddr.isP2SHAddress),
         CASHADDR_ADDRESSES.map(bchaddr.isP2SHAddress)
       )
+    })
+    it('should convert cashaddr to slpaddr in all networks', function () {
+      let addr = 'bitcoincash:qpttdv3qg2usm4nm7talhxhl05mlhms3ystlwcm8h4'
+      let slpAddr = 'simpleledger:qpttdv3qg2usm4nm7talhxhl05mlhms3ys8y9rw8ft'
+      assert.equal(bchaddr.toCashAddress(addr), addr)
+      assert.equal(bchaddr.toSlpAddress(addr), slpAddr)
+
+      assert.equal(bchaddr.toCashAddress(slpAddr), addr)
+      assert.equal(bchaddr.toSlpAddress(addr), slpAddr)
+
+      addr = 'bchtest:qpttdv3qg2usm4nm7talhxhl05mlhms3ys0d2lessf'
+      slpAddr = 'slptest:qpttdv3qg2usm4nm7talhxhl05mlhms3ys5edyr8z5'
+      assert.equal(bchaddr.toCashAddress(addr), addr)
+      assert.equal(bchaddr.toSlpAddress(addr), slpAddr)
+
+      assert.equal(bchaddr.toCashAddress(slpAddr), addr)
+      assert.equal(bchaddr.toSlpAddress(addr), slpAddr)
+
+      addr = 'bchreg:qpttdv3qg2usm4nm7talhxhl05mlhms3ys43u76rn0'
+      slpAddr = 'slpreg:qpttdv3qg2usm4nm7talhxhl05mlhms3ysg3x0302x'
+      assert.equal(bchaddr.toCashAddress(addr), addr)
+      assert.equal(bchaddr.toSlpAddress(addr), slpAddr)
+
+      assert.equal(bchaddr.toCashAddress(slpAddr), addr)
+      assert.equal(bchaddr.toSlpAddress(addr), slpAddr)
     })
   })
 })
