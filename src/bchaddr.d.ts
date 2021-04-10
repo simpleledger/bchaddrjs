@@ -1,11 +1,22 @@
-export type Format = string;
-
-export type Network = string;
-
-export type Type = string;
+export enum Format {
+    Legacy = "legacy",
+    Bitpay = "bitpay",
+    Cashaddr = "cashaddr",
+    Slpaddr = "slpaddr"
+}
+    
+export enum Network {
+    Mainnet = "mainnet",
+    Testnet = "testnet"
+}
+    
+export enum Type {
+    P2PKH = "p2pkh",
+    P2SH = "p2sh"
+}
 
 export interface decoded {
-    hash: Uint8Array;
+    hash: Array<number>;
     format: Format;
     network: Network;
     type: Type;
