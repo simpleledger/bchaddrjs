@@ -46,7 +46,7 @@ You may include a script tag in your HTML and the `bchaddr` module will be defin
 <html>
   <head>
     ...
-    <script src="https://unpkg.com/bchaddrjs-slp@0.2.12/dist/bchaddrjs-slp-0.2.12.min.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bchaddrjs-slp@0.2.14/dist/bchaddrjs-slp-0.2.14.min.js" crossorigin="anonymous"></script>
   </head>
   ...
 </html>
