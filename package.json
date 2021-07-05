@@ -38,7 +38,8 @@
     "translation",
     "base58",
     "bitpay",
-    "cash-address"
+    "cash-address",
+    "regtest"
   ],
   "author": "Emilio Almansi <hi@ealmansi.com>",
   "license": "MIT",

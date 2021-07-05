@@ -102,6 +102,52 @@ describe('bchaddr', function () {
     '2N5PDFvrCCraXA3pv8CDqr5NxakT8KJb3Gg'
   ]
 
+  var LEGACY_REGTEST_P2PKH_ADDRESSES = [
+    'mqfRfwGeZnFwfFE7KWJjyg6Yx212iGi6Fi',
+    'mnbGP2FeRsbgdQCzDT35zPWDcYSKm4wrcg',
+    'mtzp4ikCh5sfBrk7PLBqoAq8w6zc48PsGn',
+    'mwcVovLAmwfCsK7mMYSdPqwat9PXqcMiFt',
+    'mkW73U1APbCi3Xw3Jx1gqQPfuB1dHFDiEU',
+    'n3XzRk5hNf5grdCmWQK5ECeWB1wgzzYzZd',
+    'mi2Y4EyseNcPwPrRdt9aUFTb45UJHNgtbL',
+    'mmxXJiiULiTdGo6PoXmtpNYbEiXP2v746S',
+    'mgQMKS7otdvVCebnTqBS93dbU5yUZPsANB',
+    'mupPZdv6KkFGwKuvKNvjMhviZn93yznq73',
+    'mwUhDMsi48KGvnhQEdhcspEQm4u8o754bx',
+    'n2de8E7FhhjWuhHfdWQB9u4wir3AXqspCt',
+    'mxn3xavDXvaXonEVzXpC5aUbCdZoaTEB2g',
+    'mjEnHUmWycspFuFG8wg5gJZizX1ZtEF1XN',
+    'mnbCjfYQ1uvnCvShQ1ByjG17Ga1Dk3RTXN',
+    'n2uNhsHMPfwBLT2Yp81uqSxepLUr6zCnCz',
+    'n465tUFo4xdouyEHusfXbah6b481K5Nivk',
+    'mhoikr2x8c3X5KMeEScqFZQy6AUy4GeR4M',
+    'n29kt8PWq1MCaqaapfU2s5d9fq4yytS1xJ',
+    'msewZhWhrXC3eCyZ3XukdRF65sYwtbmARy'
+  ]
+
+  var LEGACY_REGTEST_P2SH_ADDRESSES = [
+    '2N3PhNAc8v7eRB65UQAcqCLERStuD93JXLD',
+    '2MzKY5Fb8nCzA9F4MJ7MBD3e67RLWFE1ciP',
+    '2N6j5kx5h3RG8hhbUTzVw1py1RytnZNYoXo',
+    '2N9LmW9ff8H3gP9y8SCkicW5TP2HiFpeK4z',
+    '2MxENjhLejvbBZNnQPcKn44XYQ3uoiBT3fF',
+    '2NFGG7yRBizUANU48b4dASrnNftqsNwzSM1',
+    '2MukokUKMzhzsTEhniYTfgubTYxNUi6PtTX',
+    '2Mygnzx3xh3r6ndwktC5z32gTjbRZXkJpFr',
+    '2Mt8d1fTJEyJxiVT9YVVXMhmTxxsexLdJiE',
+    '2N7YfFsFag5dkTAmHQ3EpaN4b4f3EPkwQkk',
+    '2N9CxubDCQThkSdYmKJ1i6UNHFwoKBxp2Hj',
+    '2NEMupTSk437zRY92iAiGNZCpDiwLvwnZEL',
+    '2NAWKepFhtFy1Kd5s5C8HJEcThWTyzKiNGA',
+    '2Mvy3yi71KxGHmk6dDbzAtxhbVPukK6MD5u',
+    '2MzKURtstNFKFimJ4UfW4wv8ymSuQCcZPN2',
+    '2NEdeQ6cqk1KerHsutnL1476XKDP2agcCh5',
+    '2NFpMahbHRJ2HRp5ezXycpEpy5w2BmnVM9W',
+    '2MuXzT5NSUwRzbAD1K6vvUDYqb3P9RUvPgK',
+    '2NDt2aMj1BLjg6gRwuKn85jm2AhyAV8e2VF',
+    '2N5PDFvrCCraXA3pv8CDqr5NxakT8KJb3Gg'
+  ]
+
   var BITPAY_MAINNET_P2PKH_ADDRESSES = [
     'CScMwvXjdooDnGevHgfHjGWFi9cjk75Aaj',
     'CPYCf1WjVu8xkRdoBdPdjyuvNg42oA7g3o',
@@ -286,6 +332,52 @@ describe('bchaddr', function () {
     'bchtest:pzzjgw37vwls805c9fw6g9vqyupadst6wgg2232yf7'
   ]
 
+  var CASHADDR_REGTEST_P2PKH_ADDRESSES = [
+    'bchreg:qph5kuz78czq00e3t85ugpgd7xmer5kr7c28g5v92v',
+    'bchreg:qpxenfpcf975gxdjmq9pk3xm6hjmfj6re5y9gf3l5p',
+    'bchreg:qzfau6vrq980qntgp5e7l6cpfsf7jw88c5zskp4yzq',
+    'bchreg:qzcguejjfxld867ck4zudc9a6y8mf6ftgq7d5yglmd',
+    'bchreg:qqm2lpqdfjsg8kkhwk0a3e3gypyswkd69uaakryk64',
+    'bchreg:qrccfa4qm3xfcrta78v7du75jjaww0ylnsw6pq3qp2',
+    'bchreg:qqdcsl6c879esyxyacmz7g6vtzwjjwtznsj5xqmxhc',
+    'bchreg:qpr2ddwe8qnnh8h20mmn4zgrharmy0vuy56m69xvms',
+    'bchreg:qqymsmh0nhfhs9k5whhnjwfxyaumvtxm8g5vak5dp7',
+    'bchreg:qzwdmm83qjx7372wxgszaukan73ffn8ct5tzg334f9',
+    'bchreg:qzh3f9me5z5sn2w8euap2gyrp6kr7gf6my2495cq72',
+    'bchreg:qrneuckcx69clprn4nnr82tf8sycqrs3act93p6r7n',
+    'bchreg:qz742xef07g9w8q52mx0q6m9hp05hnzm65qqjtwuas',
+    'bchreg:qq5dzl0drx8v0layyyuh5aupvxfs80ydmsl68n5wr4',
+    'bchreg:qpxedxtug7kpwd6tgf5vx08gjamel7sldsxmaa8a2a',
+    'bchreg:qr4fs2m8tjmw54r2aqmadggzuagttkujgyauzjv67l',
+    'bchreg:qrmed4fxlhkgay9nxw7zn9muew5ktkyjnuznu29uxr',
+    'bchreg:qqv3cpvmu4h0vqa6aly0urec7kwtuhe49yu5tcywwk',
+    'bchreg:qr39scfteeu5l573lzerchh6wc4cqkxetuanmygjjl',
+    'bchreg:qzzjgw37vwls805c9fw6g9vqyupadst6wg9nplw539'
+  ]
+
+  var CASHADDR_REGTEST_P2SH_ADDRESSES = [
+    'bchreg:pph5kuz78czq00e3t85ugpgd7xmer5kr7caz4mtx33',
+    'bchreg:ppxenfpcf975gxdjmq9pk3xm6hjmfj6re5nq4xku0u',
+    'bchreg:pzfau6vrq980qntgp5e7l6cpfsf7jw88c544twj8ea',
+    'bchreg:pzcguejjfxld867ck4zudc9a6y8mf6ftgqfgft0uqs',
+    'bchreg:pqm2lpqdfjsg8kkhwk0a3e3gypyswkd69u2ctvr4pg',
+    'bchreg:prccfa4qm3xfcrta78v7du75jjaww0ylnselu0kr6h',
+    'bchreg:pqdcsl6c879esyxyacmz7g6vtzwjjwtzns93m0u9v9',
+    'bchreg:ppr2ddwe8qnnh8h20mmn4zgrharmy0vuy5d782p0qd',
+    'bchreg:pqymsmh0nhfhs9k5whhnjwfxyaumvtxm8grfqenw6r',
+    'bchreg:pzwdmm83qjx7372wxgszaukan73ffn8ct5u847kkjc',
+    'bchreg:pzh3f9me5z5sn2w8euap2gyrp6kr7gf6myascmlr9h',
+    'bchreg:prneuckcx69clprn4nnr82tf8sycqrs3acuqvwaq9w',
+    'bchreg:pz742xef07g9w8q52mx0q6m9hp05hnzm65h90yflxd',
+    'bchreg:pq5dzl0drx8v0layyyuh5aupvxfs80ydmsgl6undcg',
+    'bchreg:ppxedxtug7kpwd6tgf5vx08gjamel7slds37qjq73q',
+    'bchreg:pr4fs2m8tjmw54r2aqmadggzuagttkujgy2elate9z',
+    'bchreg:prmed4fxlhkgay9nxw7zn9muew5ktkyjnu4kp9zla7',
+    'bchreg:pqv3cpvmu4h0vqa6aly0urec7kwtuhe49yt3khrd4t',
+    'bchreg:pr39scfteeu5l573lzerchh6wc4cqkxetu2kxt03fz',
+    'bchreg:pzzjgw37vwls805c9fw6g9vqyupadst6wgjkusfh2c'
+  ]
+
   var SLPADDR_MAINNET_P2PKH_ADDRESSES = [
     'simpleledger:qph5kuz78czq00e3t85ugpgd7xmer5kr7ccj3fcpsg',
     'simpleledger:qpxenfpcf975gxdjmq9pk3xm6hjmfj6re5ks359mw9',
@@ -378,11 +470,62 @@ describe('bchaddr', function () {
     'slptest:pzzjgw37vwls805c9fw6g9vqyupadst6wgn7d2snmr'
   ]
 
+  var SLPADDR_REGTEST_P2PKH_ADDRESSES = [
+    'slpreg:qph5kuz78czq00e3t85ugpgd7xmer5kr7ch8j98fn9',
+    'slpreg:qpxenfpcf975gxdjmq9pk3xm6hjmfj6re5e9jc6ndg',
+    'slpreg:qzfau6vrq980qntgp5e7l6cpfsf7jw88c5lsvs7gmf',
+    'slpreg:qzcguejjfxld867ck4zudc9a6y8mf6ftgqrdw4rnzy',
+    'slpreg:qqm2lpqdfjsg8kkhwk0a3e3gypyswkd69uqavj06ru',
+    'slpreg:qrccfa4qm3xfcrta78v7du75jjaww0ylnsn6m36vcr',
+    'slpreg:qqdcsl6c879esyxyacmz7g6vtzwjjwtzns05u3s2w3',
+    'slpreg:qpr2ddwe8qnnh8h20mmn4zgrharmy0vuy58mq5dqze',
+    'slpreg:qqymsmh0nhfhs9k5whhnjwfxyaumvtxm8gfv88lpch',
+    'slpreg:qzwdmm83qjx7372wxgszaukan73ffn8ct5kzjq6esv',
+    'slpreg:qzh3f9me5z5sn2w8euap2gyrp6kr7gf6myh4l9nv8r',
+    'slpreg:qrneuckcx69clprn4nnr82tf8sycqrs3ack9ts3086',
+    'slpreg:qz742xef07g9w8q52mx0q6m9hp05hnzm65aqg69sye',
+    'slpreg:qq5dzl0drx8v0layyyuh5aupvxfs80ydmsz6azlz6u',
+    'slpreg:qpxedxtug7kpwd6tgf5vx08gjamel7sldsmm8vv3n5',
+    'slpreg:qr4fs2m8tjmw54r2aqmadggzuagttkujgyqucr8k8k',
+    'slpreg:qrmed4fxlhkgay9nxw7zn9muew5ktkyjnulnxmwsl2',
+    'slpreg:qqv3cpvmu4h0vqa6aly0urec7kwtuhe49yp53f0zhl',
+    'slpreg:qr39scfteeu5l573lzerchh6wc4cqkxetuqnp4r7tk',
+    'slpreg:qzzjgw37vwls805c9fw6g9vqyupadst6wgcnmw9cgv'
+  ]
+
+  var SLPADDR_REGTEST_P2SH_ADDRESSES = [
+    'slpreg:pph5kuz78czq00e3t85ugpgd7xmer5kr7cqz02q2gc',
+    'slpreg:ppxenfpcf975gxdjmq9pk3xm6hjmfj6re5wq0hask4',
+    'slpreg:pzfau6vrq980qntgp5e7l6cpfsf7jw88c5g43letq5',
+    'slpreg:pzcguejjfxld867ck4zudc9a6y8mf6ftgq5gn6ysee',
+    'slpreg:pqm2lpqdfjsg8kkhwk0a3e3gypyswkd69uhc3agecp',
+    'slpreg:prccfa4qm3xfcrta78v7du75jjaww0ylnsylx7a0r7',
+    'slpreg:pqdcsl6c879esyxyacmz7g6vtzwjjwtznsc3p7hf4v',
+    'slpreg:ppr2ddwe8qnnh8h20mmn4zgrharmy0vuy5s7am2rey',
+    'slpreg:pqymsmh0nhfhs9k5whhnjwfxyaumvtxm8g7f6gczr2',
+    'slpreg:pzwdmm83qjx7372wxgszaukan73ffn8ct5p800a6t3',
+    'slpreg:pzh3f9me5z5sn2w8euap2gyrp6kr7gf6myqsz250u7',
+    'slpreg:prneuckcx69clprn4nnr82tf8sycqrs3acpqklkvu8',
+    'slpreg:pz742xef07g9w8q52mx0q6m9hp05hnzm652944znly',
+    'slpreg:pq5dzl0drx8v0layyyuh5aupvxfs80ydms4lqdcppp',
+    'slpreg:ppxedxtug7kpwd6tgf5vx08gjamel7sldsv76rtjgf',
+    'slpreg:pr4fs2m8tjmw54r2aqmadggzuagttkujgyhe9vq4ut',
+    'slpreg:prmed4fxlhkgay9nxw7zn9muew5ktkyjnugkm5fnyh',
+    'slpreg:pqv3cpvmu4h0vqa6aly0urec7kwtuhe49yk3vxgpvz',
+    'slpreg:pr39scfteeu5l573lzerchh6wc4cqkxetuhku6yast',
+    'slpreg:pzzjgw37vwls805c9fw6g9vqyupadst6wg0kxpzmn3'
+  ]
+
   var LEGACY_ADDRESSES = flatten([
     LEGACY_MAINNET_P2PKH_ADDRESSES,
     LEGACY_MAINNET_P2SH_ADDRESSES,
     LEGACY_TESTNET_P2PKH_ADDRESSES,
     LEGACY_TESTNET_P2SH_ADDRESSES
+  ])
+
+  var REGTEST_LEGACY_ADDRESSES = flatten([
+    LEGACY_REGTEST_P2PKH_ADDRESSES,
+    LEGACY_REGTEST_P2SH_ADDRESSES
   ])
 
   var BITPAY_MAINNET_ADDRESSES = flatten([
@@ -403,11 +546,20 @@ describe('bchaddr', function () {
     CASHADDR_TESTNET_P2SH_ADDRESSES
   ])
 
+  var REGTEST_CASHADDR_ADDRESSES = flatten([
+    CASHADDR_REGTEST_P2PKH_ADDRESSES,
+    CASHADDR_REGTEST_P2SH_ADDRESSES
+  ])
+
   var SLPADDR_ADDRESSES = flatten([
     SLPADDR_MAINNET_P2PKH_ADDRESSES,
     SLPADDR_MAINNET_P2SH_ADDRESSES,
     SLPADDR_TESTNET_P2PKH_ADDRESSES,
     SLPADDR_TESTNET_P2SH_ADDRESSES
+  ])
+  var SLPADDR_REGTEST_ADDRESSES = flatten([
+    SLPADDR_REGTEST_P2PKH_ADDRESSES,
+    SLPADDR_REGTEST_P2SH_ADDRESSES
   ])
 
   var CASHADDR_ADDRESSES_NO_PREFIX = CASHADDR_ADDRESSES.map(function (address) {
@@ -415,7 +567,17 @@ describe('bchaddr', function () {
     return parts[1]
   })
 
+  var CASHADDR_REGTEST_ADDRESSES_NO_PREFIX = REGTEST_CASHADDR_ADDRESSES.map(function (address) {
+    var parts = address.split(':')
+    return parts[1]
+  })
+
   var SLPADDR_ADDRESSES_NO_PREFIX = CASHADDR_ADDRESSES.map(function (address) {
+    var parts = address.split(':')
+    return parts[1]
+  })
+
+  var SLPADDR_REGTEST_ADDRESSES_NO_PREFIX = REGTEST_CASHADDR_ADDRESSES.map(function (address) {
     var parts = address.split(':')
     return parts[1]
   })
@@ -438,6 +600,13 @@ describe('bchaddr', function () {
     CASHADDR_TESTNET_P2SH_ADDRESSES
   ])
 
+  var REGTEST_ADDRESSES = flatten([
+    LEGACY_REGTEST_P2PKH_ADDRESSES,
+    LEGACY_REGTEST_P2SH_ADDRESSES,
+    CASHADDR_REGTEST_P2PKH_ADDRESSES,
+    CASHADDR_REGTEST_P2SH_ADDRESSES
+  ])
+
   var P2PKH_ADDRESSES = flatten([
     LEGACY_MAINNET_P2PKH_ADDRESSES,
     LEGACY_TESTNET_P2PKH_ADDRESSES,
@@ -447,6 +616,11 @@ describe('bchaddr', function () {
     CASHADDR_TESTNET_P2PKH_ADDRESSES
   ])
 
+  var P2PKH_REGTEST_ADDRESSES = flatten([
+    LEGACY_REGTEST_P2PKH_ADDRESSES,
+    CASHADDR_REGTEST_P2PKH_ADDRESSES
+  ])
+
   var P2SH_ADDRESSES = flatten([
     LEGACY_MAINNET_P2SH_ADDRESSES,
     LEGACY_TESTNET_P2SH_ADDRESSES,
@@ -454,6 +628,11 @@ describe('bchaddr', function () {
     BITPAY_TESTNET_P2SH_ADDRESSES,
     CASHADDR_MAINNET_P2SH_ADDRESSES,
     CASHADDR_TESTNET_P2SH_ADDRESSES
+  ])
+
+  var P2SH_REGTEST_ADDRESSES = flatten([
+    LEGACY_REGTEST_P2SH_ADDRESSES,
+    CASHADDR_REGTEST_P2SH_ADDRESSES
   ])
 
   function flatten (arrays) {
@@ -487,6 +666,11 @@ describe('bchaddr', function () {
         assert.strictEqual(bchaddr.detectAddressFormat(address), bchaddr.Format.Cashaddr)
       })
     })
+    it('it should detect a regtest cashaddr address\' format correctly', function () {
+      REGTEST_CASHADDR_ADDRESSES.forEach(function (address) {
+        assert.strictEqual(bchaddr.detectAddressFormat(address, true), bchaddr.Format.Cashaddr)
+      })
+    })
   })
 
   describe('#detectAddressNetwork()', function () {
@@ -511,6 +695,11 @@ describe('bchaddr', function () {
         assert.strictEqual(bchaddr.detectAddressNetwork(address), bchaddr.Network.Testnet)
       })
     })
+    it('it should detect a regtest address\' network correctly', function () {
+      REGTEST_ADDRESSES.forEach(function (address) {
+        assert.strictEqual(bchaddr.detectAddressNetwork(address, true), bchaddr.Network.Regtest)
+      })
+    })
   })
 
   describe('#detectAddressType()', function () {
@@ -525,6 +714,17 @@ describe('bchaddr', function () {
         bchaddr.detectAddressType('somt1LuPdPkGH5QoNSewQrr8EzNbM27ktPdgQX')
       }, bchaddr.InvalidAddressError)
     })
+    it('should fail when called with an invalid regtest address', function () {
+      assert.throws(function () {
+        bchaddr.detectAddressType()
+      }, bchaddr.InvalidAddressError)
+      assert.throws(function () {
+        bchaddr.detectAddressType('some invalid regtest address', true)
+      }, bchaddr.InvalidAddressError)
+      assert.throws(function () {
+        bchaddr.detectAddressType('someregtest1LuPdPkGH5QoNSewQrr8EzNbM27ktPdgQX', true)
+      }, bchaddr.InvalidAddressError)
+    })
     it('should detect a P2PKH address\' type correctly', function () {
       P2PKH_ADDRESSES.forEach(function (address) {
         assert.strictEqual(bchaddr.detectAddressType(address), bchaddr.Type.P2PKH)
@@ -533,6 +733,16 @@ describe('bchaddr', function () {
     it('should detect a P2SH address\' type correctly', function () {
       P2SH_ADDRESSES.forEach(function (address) {
         assert.strictEqual(bchaddr.detectAddressType(address), bchaddr.Type.P2SH)
+      })
+    })
+    it('should detect a regtest P2PKH address\' type correctly', function () {
+      P2PKH_REGTEST_ADDRESSES.forEach(function (address) {
+        assert.strictEqual(bchaddr.detectAddressType(address, true), bchaddr.Type.P2PKH)
+      })
+    })
+    it('should detect a regtest P2SH address\' type correctly', function () {
+      P2SH_REGTEST_ADDRESSES.forEach(function (address) {
+        assert.strictEqual(bchaddr.detectAddressType(address, true), bchaddr.Type.P2SH)
       })
     })
   })
@@ -565,6 +775,15 @@ describe('bchaddr', function () {
       assert.deepEqual(
         CASHADDR_ADDRESSES.map(bchaddr.toLegacyAddress),
         LEGACY_ADDRESSES
+      )
+    })
+    it('should translate regtest cashaddr address format to legacy format correctly', function () {
+      function toRegtestLegacyAddress (addr) {
+        return bchaddr.toLegacyAddress(addr, true)
+      }
+      assert.deepEqual(
+        REGTEST_CASHADDR_ADDRESSES.map(toRegtestLegacyAddress),
+        REGTEST_LEGACY_ADDRESSES
       )
     })
   })
@@ -613,10 +832,32 @@ describe('bchaddr', function () {
         bchaddr.toCashAddress('some int1LuPdPkGH5QoNSewQrr8EzNbM27ktPdgQX')
       }, bchaddr.InvalidAddressError)
     })
+    it('should fail when called with an invalid regtest address', function () {
+      assert.throws(function () {
+        bchaddr.toCashAddress()
+      }, bchaddr.InvalidAddressError)
+      assert.throws(function () {
+        bchaddr.toCashAddress('some invalid regtest address', true)
+      }, bchaddr.InvalidAddressError)
+      assert.throws(function () {
+        bchaddr.toCashAddress('some regtest int1LuPdPkGH5QoNSewQrr8EzNbM27ktPdgQX', true)
+      }, bchaddr.InvalidAddressError)
+    })
     it('should translate legacy address format to cashaddr format correctly', function () {
       assert.deepEqual(
         LEGACY_ADDRESSES.map(bchaddr.toCashAddress),
         CASHADDR_ADDRESSES
+      )
+    })
+
+    it('should translate legacy address format to regtest cashaddr format correctly',
+    function () {
+      function toRegtestCashAddr (addr) {
+        return bchaddr.toCashAddress(addr, true)
+      }
+      assert.deepEqual(
+        REGTEST_LEGACY_ADDRESSES.map(toRegtestCashAddr),
+        REGTEST_CASHADDR_ADDRESSES
       )
     })
     it('should translate bitpay address format to cashaddr format correctly', function () {
@@ -637,6 +878,15 @@ describe('bchaddr', function () {
         CASHADDR_ADDRESSES
       )
     })
+    it('should translate no-prefix regtest cashaddr address format to itself correctly', function () {
+      function toRegtestCashAddress (addr) {
+        return bchaddr.toCashAddress(addr, true)
+      }
+      assert.deepEqual(
+        CASHADDR_REGTEST_ADDRESSES_NO_PREFIX.map(toRegtestCashAddress),
+        REGTEST_CASHADDR_ADDRESSES
+      )
+    })
   })
 
   describe('#toSlpAddress()', function () {
@@ -651,10 +901,30 @@ describe('bchaddr', function () {
         bchaddr.toSlpAddress('some int1LuPdPkGH5QoNSewQrr8EzNbM27ktPdgQX')
       }, bchaddr.InvalidAddressError)
     })
+    it('should fail when called with an invalid address', function () {
+      assert.throws(function () {
+        bchaddr.toSlpAddress()
+      }, bchaddr.InvalidAddressError)
+      assert.throws(function () {
+        bchaddr.toSlpAddress('some invalid address', true)
+      }, bchaddr.InvalidAddressError)
+      assert.throws(function () {
+        bchaddr.toSlpAddress('some int1LuPdPkGH5QoNSewQrr8EzNbM27ktPdgQX', true)
+      }, bchaddr.InvalidAddressError)
+    })
+    function toRegtestSlpAddr (addr) {
+      return bchaddr.toSlpAddress(addr, true)
+    }
     it('should translate legacy address format to slpaddr format correctly', function () {
       assert.deepEqual(
         LEGACY_ADDRESSES.map(bchaddr.toSlpAddress),
         SLPADDR_ADDRESSES
+      )
+    })
+    it('should translate legacy address format to regtest slpaddr format correctly', function () {
+      assert.deepEqual(
+        REGTEST_LEGACY_ADDRESSES.map(toRegtestSlpAddr),
+        SLPADDR_REGTEST_ADDRESSES
       )
     })
     it('should translate bitpay address format to slpaddr format correctly', function () {
@@ -663,16 +933,28 @@ describe('bchaddr', function () {
         SLPADDR_ADDRESSES
       )
     })
-    it('should translate cashaddr address format to itself correctly', function () {
+    it('should translate SLP address format to itself correctly', function () {
       assert.deepEqual(
         SLPADDR_ADDRESSES.map(bchaddr.toSlpAddress),
         SLPADDR_ADDRESSES
+      )
+    })
+    it('should translate regtest SLP address format to itself correctly', function () {
+      assert.deepEqual(
+        SLPADDR_REGTEST_ADDRESSES.map(toRegtestSlpAddr),
+        SLPADDR_REGTEST_ADDRESSES
       )
     })
     it('should translate no-prefix slpaddr address format to itself correctly', function () {
       assert.deepEqual(
         SLPADDR_ADDRESSES_NO_PREFIX.map(bchaddr.toSlpAddress),
         SLPADDR_ADDRESSES
+      )
+    })
+    it('should translate no-prefix regtest slpaddr address format to itself correctly', function () {
+      assert.deepEqual(
+        SLPADDR_REGTEST_ADDRESSES_NO_PREFIX.map(toRegtestSlpAddr),
+        SLPADDR_REGTEST_ADDRESSES
       )
     })
   })
@@ -757,6 +1039,17 @@ describe('bchaddr', function () {
         bchaddr.isCashAddress('some int1LuPdPkGH5QoNSewQrr8EzNbM27ktPdgQX')
       }, bchaddr.InvalidAddressError)
     })
+    it('should fail when called with an invalid regtest address', function () {
+      assert.throws(function () {
+        bchaddr.isCashAddress()
+      }, bchaddr.InvalidAddressError)
+      assert.throws(function () {
+        bchaddr.isCashAddress('some invalid address', true)
+      }, bchaddr.InvalidAddressError)
+      assert.throws(function () {
+        bchaddr.isCashAddress('some int1LuPdPkGH5QoNSewQrr8EzNbM27ktPdgQX', true)
+      }, bchaddr.InvalidAddressError)
+    })
     it('should return false for a legacy address', function () {
       LEGACY_ADDRESSES.forEach(function (address) {
         assert.isFalse(bchaddr.isCashAddress(address))
@@ -777,6 +1070,11 @@ describe('bchaddr', function () {
         assert.isTrue(bchaddr.isCashAddress(address))
       })
     })
+    it('should return true for a regtest cashaddr address', function () {
+      REGTEST_CASHADDR_ADDRESSES.forEach(function (address) {
+        assert.isTrue(bchaddr.isCashAddress(address, true))
+      })
+    })
   })
 
   describe('#isSlpAddress()', function () {
@@ -789,6 +1087,17 @@ describe('bchaddr', function () {
       }, bchaddr.InvalidAddressError)
       assert.throws(function () {
         bchaddr.isSlpAddress('some int1LuPdPkGH5QoNSewQrr8EzNbM27ktPdgQX')
+      }, bchaddr.InvalidAddressError)
+    })
+    it('should fail when called with an invalid regtest address', function () {
+      assert.throws(function () {
+        bchaddr.isSlpAddress()
+      }, bchaddr.InvalidAddressError)
+      assert.throws(function () {
+        bchaddr.isSlpAddress('some invalid address', true)
+      }, bchaddr.InvalidAddressError)
+      assert.throws(function () {
+        bchaddr.isSlpAddress('some int1LuPdPkGH5QoNSewQrr8EzNbM27ktPdgQX', true)
       }, bchaddr.InvalidAddressError)
     })
     it('should return false for a legacy address', function () {
@@ -809,6 +1118,11 @@ describe('bchaddr', function () {
     it('should return true for a slpaddr address', function () {
       SLPADDR_ADDRESSES.forEach(function (address) {
         assert.isTrue(bchaddr.isSlpAddress(address))
+      })
+    })
+    it('should return true for a regtest slpaddr address', function () {
+      SLPADDR_REGTEST_ADDRESSES.forEach(function (address) {
+        assert.isTrue(bchaddr.isSlpAddress(address, true))
       })
     })
   })
@@ -835,6 +1149,11 @@ describe('bchaddr', function () {
         assert.isFalse(bchaddr.isMainnetAddress(address))
       })
     })
+    it('should return false for a regtest address', function () {
+      REGTEST_ADDRESSES.forEach(function (address) {
+        assert.isFalse(bchaddr.isMainnetAddress(address, true))
+      })
+    })
   })
 
   describe('#isTestnetAddress()', function () {
@@ -857,6 +1176,11 @@ describe('bchaddr', function () {
     it('should return true for a testnet address', function () {
       TESTNET_ADDRESSES.forEach(function (address) {
         assert.isTrue(bchaddr.isTestnetAddress(address))
+      })
+    })
+    it('should return true for a regtest address', function () {
+      REGTEST_ADDRESSES.forEach(function (address) {
+        assert.isFalse(bchaddr.isTestnetAddress(address, true))
       })
     })
   })
@@ -883,6 +1207,11 @@ describe('bchaddr', function () {
         assert.isFalse(bchaddr.isP2PKHAddress(address))
       })
     })
+    it('should return true for a P2SH address', function () {
+      P2PKH_REGTEST_ADDRESSES.forEach(function (address) {
+        assert.isTrue(bchaddr.isP2PKHAddress(address, true))
+      })
+    })
   })
 
   describe('#isP2SHAddress()', function () {
@@ -905,6 +1234,11 @@ describe('bchaddr', function () {
     it('should return true for a P2SH address', function () {
       P2SH_ADDRESSES.forEach(function (address) {
         assert.isTrue(bchaddr.isP2SHAddress(address))
+      })
+    })
+    it('should return true for a regtest P2SH address', function () {
+      P2SH_REGTEST_ADDRESSES.forEach(function (address) {
+        assert.isTrue(bchaddr.isP2SHAddress(address, true))
       })
     })
   })
@@ -968,6 +1302,15 @@ describe('bchaddr', function () {
       assert.deepEqual(
         CASHADDR_ADDRESSES_NO_PREFIX.map(bchaddr.isTestnetAddress),
         CASHADDR_ADDRESSES.map(bchaddr.isTestnetAddress)
+      )
+    })
+    function isRegAddress (addr) {
+      return bchaddr.isRegTestAddress(addr, true)
+    }
+    it('should return the same result for isRegtestAddress', function () {
+      assert.deepEqual(
+        CASHADDR_REGTEST_ADDRESSES_NO_PREFIX.map(isRegAddress),
+        REGTEST_CASHADDR_ADDRESSES.map(isRegAddress)
       )
     })
     it('should return the same result for isP2PKHAddress', function () {
