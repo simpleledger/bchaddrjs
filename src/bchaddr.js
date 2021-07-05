@@ -157,6 +157,54 @@ function toSlpAddress (address, regtest) {
 }
 
 /**
+ * Translates the given address into mainnet format.
+ * @static
+ * @param {string} address - A valid address in any format.
+ * @return {string}
+ * @throws {InvalidAddressError}
+ */
+function toMainnetAddress (address) {
+  var decoded = decodeAddress(address)
+  return encodeAsMainnetaddr(decoded)
+}
+
+/**
+ * Translates the given address into testnet format.
+ * @static
+ * @param {string} address - A valid address in any format.
+ * @return {string}
+ * @throws {InvalidAddressError}
+ */
+function toTestnetAddress (address) {
+  var decoded = decodeAddress(address)
+  return encodeAsTestnetaddr(decoded)
+}
+
+/**
+ * Translates the given address into regtest format.
+ * @static
+ * @param {string} address - A valid address in any format.
+ * @return {string}
+ * @throws {InvalidAddressError}
+ */
+function toRegtestAddress (address) {
+  var decoded = decodeAddress(address)
+  return encodeAsRegtestaddr(decoded)
+}
+
+/**
+ * Translates the given address into regtest format.
+ * @static
+ * @param {string} address - A valid address in any format.
+ * @return {string}
+ * @throws {InvalidAddressError}
+ */
+function toSlpRegtestAddress (address) {
+  var decoded = decodeAddress(address)
+  return encodeAsSlpRegtestaddr(decoded)
+}
+
+/**
  * Version byte table for base58 formats.
  * @private
  */
@@ -508,6 +556,38 @@ function encodeAsSlpaddr (decoded) {
 }
 
 /**
+ * Encodes the given decoded address into mainnet format.
+ * @private
+ * @param {object} decoded
+ * @returns {string}
+ */
+function encodeAsMainnetaddr (decoded) {
+  var prefix = 'bitcoincash'
+  var type = decoded.type === Type.P2PKH ? 'P2PKH' : 'P2SH'
+  var hash = Uint8Array.from(decoded.hash)
+  if (decoded.format === Format.Slpaddr) {
+    prefix = 'simpleledger'
+  }
+  return cashaddr.encode(prefix, type, hash)
+}
+
+/**
+ * Encodes the given decoded address into testnet format.
+ * @private
+ * @param {object} decoded
+ * @returns {string}
+ */
+function encodeAsTestnetaddr (decoded) {
+  var prefix = 'bchtest'
+  var type = decoded.type === Type.P2PKH ? 'P2PKH' : 'P2SH'
+  var hash = Uint8Array.from(decoded.hash)
+  if (decoded.format === Format.Slpaddr) {
+    prefix = 'slptest'
+  }
+  return cashaddr.encode(prefix, type, hash)
+}
+
+/**
  * Encodes the given decoded address into regtest format.
  * @private
  * @param {object} decoded
@@ -517,6 +597,9 @@ function encodeAsRegtestaddr (decoded) {
   var prefix = 'bchreg'
   var type = decoded.type === Type.P2PKH ? 'P2PKH' : 'P2SH'
   var hash = Uint8Array.from(decoded.hash)
+  if (decoded.format === Format.Slpaddr) {
+    prefix = 'slpreg'
+  }
   return cashaddr.encode(prefix, type, hash)
 }
 
@@ -668,6 +751,10 @@ module.exports = {
   toCashAddress: toCashAddress,
   encodeAsSlpaddr: encodeAsSlpaddr,
   toSlpAddress: toSlpAddress,
+  toMainnetAddress: toMainnetAddress,
+  toTestnetAddress: toTestnetAddress,
+  encodeAsMainnetaddr: encodeAsMainnetaddr,
+  encodeAsTestnetaddr: encodeAsTestnetaddr,
   encodeAsRegtestaddr: encodeAsRegtestaddr,
   encodeAsSlpRegtestaddr: encodeAsSlpRegtestaddr,
   encodeAsLegacy: encodeAsLegacy,
